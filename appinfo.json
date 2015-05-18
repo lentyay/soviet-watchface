@@ -1,0 +1,35 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "nemov.aleksei@gmail.com",
+    "longName": "Tanks Watchface",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "characterRegex": "[0-9:]",
+                "file": "fonts/Red October-Regular.ttf",
+                "name": "FONT_OCTOBER_40",
+                "type": "font"
+            },
+            {
+                "file": "images/caterpiller.png",
+                "name": "CATERPILLER",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Tanks Watchface",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "75ca3abd-4b09-4235-b141-8a95fad098fc",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
