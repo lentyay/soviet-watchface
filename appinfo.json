@@ -4,25 +4,40 @@
         ""
     ],
     "companyName": "nemov.aleksei@gmail.com",
-    "longName": "Tanks Watchface",
+    "longName": "Soviet Posters Watchface",
     "projectType": "native",
     "resources": {
         "media": [
             {
-                "characterRegex": "[0-9:]",
-                "file": "fonts/Red October-Regular.ttf",
-                "name": "FONT_OCTOBER_40",
-                "type": "font"
+                "file": "images/plakat4-aplite.png",
+                "name": "PLAKAT4",
+                "type": "png"
             },
             {
-                "file": "images/caterpiller.png",
-                "name": "CATERPILLER",
+                "file": "images/plakat3-aplite.png",
+                "name": "PLAKAT3",
                 "type": "png"
+            },
+            {
+                "file": "images/plakat2-aplite.png",
+                "name": "PLAKAT2",
+                "type": "png"
+            },
+            {
+                "file": "images/plakat1-aplite.png",
+                "name": "PLAKAT1",
+                "type": "png"
+            },
+            {
+                "characterRegex": "[0-9:]",
+                "file": "fonts/Red October-Regular.ttf",
+                "name": "FONT_OCTOBER_34",
+                "type": "font"
             }
         ]
     },
     "sdkVersion": "3",
-    "shortName": "Tanks Watchface",
+    "shortName": "Soviet Posters",
     "targetPlatforms": [
         "aplite",
         "basalt"
