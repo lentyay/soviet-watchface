@@ -10,8 +10,8 @@ static GColor time_color;
 static GColor outline_color;
 
 static void load_resources() {
-  unsigned char RESOURCE[4] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4};
-  int i = rand() % 4;
+  unsigned char RESOURCE[5] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4, RESOURCE_ID_PLAKAT5};
+  int i = rand() % 5;
   bitmap = gbitmap_create_with_resource(RESOURCE[i]);
   APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d", i, resource_size(resource_get_handle(RESOURCE[i])));  
 
@@ -21,9 +21,9 @@ static void load_resources() {
     time_color = GColorBlack;
     outline_color = GColorWhite;
   #elif PBL_PLATFORM_BASALT
-    static uint8_t time_colors[4] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */};
+    static uint8_t time_colors[5] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11111111 /* White */};
     time_color = (GColor)time_colors[i];
-    static uint8_t outline_colors[4] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */};
+    static uint8_t outline_colors[5] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11100100 /* Windsor Tan */};
     outline_color = (GColor)outline_colors[i];
   #endif  
   
@@ -90,13 +90,13 @@ static void window_load(Window *window) {
   layer_set_update_proc(main_layer, layer_update);
   layer_add_child(window_layer, main_layer);
 
-  text_layer = text_layer_create(GRect(5, 127, 130, 50));
+  text_layer = text_layer_create(GRect(5, 129, 130, 50));
   text_layer_set_text_color(text_layer, time_color);
 
-  outline_layer[0] = text_layer_create(GRect(7, 129, 130, 50));
-  outline_layer[1] = text_layer_create(GRect(7, 125, 130, 50));
-  outline_layer[2] = text_layer_create(GRect(3, 129, 130, 50));
-  outline_layer[3] = text_layer_create(GRect(3, 125, 130, 50));
+  outline_layer[0] = text_layer_create(GRect(7, 131, 130, 50));
+  outline_layer[1] = text_layer_create(GRect(7, 127, 130, 50));
+  outline_layer[2] = text_layer_create(GRect(3, 131, 130, 50));
+  outline_layer[3] = text_layer_create(GRect(3, 127, 130, 50));
   for (int i=0; i<4; ++i) {
     text_layer_set_text_color(outline_layer[i], outline_color);
   }

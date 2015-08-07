@@ -9,6 +9,17 @@
     "resources": {
         "media": [
             {
+                "file": "images/icon.png",
+                "menuIcon": true,
+                "name": "ICON",
+                "type": "png"
+            },
+            {
+                "file": "images/plakat5-aplite.png",
+                "name": "PLAKAT5",
+                "type": "png"
+            },
+            {
                 "file": "images/plakat4-aplite.png",
                 "name": "PLAKAT4",
                 "type": "png"
