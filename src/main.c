@@ -93,11 +93,9 @@ static void window_load(Window *window) {
   text_layer = text_layer_create(GRect(5, 129, 130, 50));
   text_layer_set_text_color(text_layer, time_color);
 
-  outline_layer[0] = text_layer_create(GRect(7, 131, 130, 50));
-  outline_layer[1] = text_layer_create(GRect(7, 127, 130, 50));
-  outline_layer[2] = text_layer_create(GRect(3, 131, 130, 50));
-  outline_layer[3] = text_layer_create(GRect(3, 127, 130, 50));
+  GRect outline_layer_pos[4] = {GRect(7, 131, 130, 50), GRect(7, 127, 130, 50), GRect(3, 131, 130, 50), GRect(3, 127, 130, 50)};
   for (int i=0; i<4; ++i) {
+    outline_layer[i] = text_layer_create(outline_layer_pos[i]);
     text_layer_set_text_color(outline_layer[i], outline_color);
   }
 
