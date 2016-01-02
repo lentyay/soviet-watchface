@@ -8,12 +8,20 @@ static GBitmap *bitmap;
 static GFont custom_font;
 static GColor time_color;
 static GColor outline_color;
+int cur_plakat;
 
 static void load_resources() {
   unsigned char RESOURCE[5] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4, RESOURCE_ID_PLAKAT5};
-  int i = rand() % 5;
-  bitmap = gbitmap_create_with_resource(RESOURCE[i]);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d", i, resource_size(resource_get_handle(RESOURCE[i])));  
+
+  /* Temporary replace random with last seconds digit */
+  time_t temp = time(NULL);
+  struct tm *tick_time = localtime(&temp);
+  cur_plakat = (int)(tick_time->tm_sec % 10) / 2;
+  if (cur_plakat > 4) { cur_plakat = 4; };
+  
+//  cur_plakat = rand() % 5;
+  bitmap = gbitmap_create_with_resource(RESOURCE[cur_plakat]);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d", cur_plakat, resource_size(resource_get_handle(RESOURCE[cur_plakat])));  
 
   custom_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OCTOBER_34));
 
@@ -22,9 +30,9 @@ static void load_resources() {
     outline_color = GColorWhite;
   #elif PBL_PLATFORM_BASALT
     static uint8_t time_colors[5] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11111111 /* White */};
-    time_color = (GColor)time_colors[i];
+    time_color = (GColor)time_colors[cur_plakat];
     static uint8_t outline_colors[5] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11100100 /* Windsor Tan */};
-    outline_color = (GColor)outline_colors[i];
+    outline_color = (GColor)outline_colors[cur_plakat];
   #endif  
   
 }
@@ -32,7 +40,6 @@ static void load_resources() {
 static void destroy_resources() {
   gbitmap_destroy(bitmap);
   fonts_unload_custom_font(custom_font);
-
 }
 
 static void draw_picture(GContext* ctx, GBitmap **sources, GRect bounces, int number) {
