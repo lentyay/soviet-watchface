@@ -9,6 +9,8 @@ static GFont custom_font;
 static GColor time_color;
 static GColor outline_color;
 int cur_plakat;
+int coord_x;
+int coord_y;
 
 static void load_resources() {
   unsigned char RESOURCE[5] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4, RESOURCE_ID_PLAKAT5};
@@ -25,16 +27,23 @@ static void load_resources() {
 
   custom_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OCTOBER_34));
 
-  #ifdef PBL_PLATFORM_APLITE
+  #ifdef PBL_BW
     time_color = GColorBlack;
     outline_color = GColorWhite;
-  #elif PBL_PLATFORM_BASALT
+  #elif PBL_COLOR
     static uint8_t time_colors[5] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11111111 /* White */};
     time_color = (GColor)time_colors[cur_plakat];
     static uint8_t outline_colors[5] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11100100 /* Windsor Tan */};
     outline_color = (GColor)outline_colors[cur_plakat];
   #endif  
-  
+
+  #ifdef PBL_ROUND
+    coord_x = 25;
+    coord_y = 128;
+  #elif PBL_RECT
+    coord_x = 5;
+    coord_y = 129;
+  #endif  
 }
 
 static void destroy_resources() {
@@ -97,10 +106,10 @@ static void window_load(Window *window) {
   layer_set_update_proc(main_layer, layer_update);
   layer_add_child(window_layer, main_layer);
 
-  text_layer = text_layer_create(GRect(5, 129, 130, 50));
+  text_layer = text_layer_create(GRect(coord_x, coord_y, 130, 50));
   text_layer_set_text_color(text_layer, time_color);
 
-  GRect outline_layer_pos[4] = {GRect(7, 131, 130, 50), GRect(7, 127, 130, 50), GRect(3, 131, 130, 50), GRect(3, 127, 130, 50)};
+  GRect outline_layer_pos[4] = {GRect(coord_x + 2, coord_y + 2, 130, 50), GRect(coord_x + 2, coord_y - 2, 130, 50), GRect(coord_x - 2, coord_y + 2, 130, 50), GRect(coord_x - 2, coord_y - 2, 130, 50)};
   for (int i=0; i<4; ++i) {
     outline_layer[i] = text_layer_create(outline_layer_pos[i]);
     text_layer_set_text_color(outline_layer[i], outline_color);
@@ -108,13 +117,21 @@ static void window_load(Window *window) {
 
   for (int i=0; i<4; ++i) {
     text_layer_set_background_color(outline_layer[i], GColorClear);
-    text_layer_set_text_alignment(outline_layer[i], GTextAlignmentLeft);
+    #ifdef PBL_ROUND
+      text_layer_set_text_alignment(outline_layer[i], GTextAlignmentCenter);
+    #elif PBL_RECT
+      text_layer_set_text_alignment(outline_layer[i], GTextAlignmentLeft);
+    #endif  
     text_layer_set_font(outline_layer[i], custom_font);
     layer_add_child(window_layer, text_layer_get_layer(outline_layer[i]));
   }    
     
   text_layer_set_background_color(text_layer, GColorClear);
-  text_layer_set_text_alignment(text_layer, GTextAlignmentLeft);
+  #ifdef PBL_ROUND
+    text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
+  #elif PBL_RECT
+    text_layer_set_text_alignment(text_layer, GTextAlignmentLeft);
+  #endif  
   text_layer_set_font(text_layer, custom_font);
   layer_add_child(window_layer, text_layer_get_layer(text_layer));
   

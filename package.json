@@ -1,0 +1,72 @@
+{
+    "author": "nemov.aleksei@gmail.com",
+    "dependencies": {},
+    "keywords": [],
+    "name": "soviet-posters",
+    "pebble": {
+        "capabilities": [
+            ""
+        ],
+        "displayName": "Soviet Posters Watchface",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/plakat1-aplite.png",
+                    "name": "PLAKAT1",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/icon.png",
+                    "menuIcon": true,
+                    "name": "ICON",
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/plakat5-aplite.png",
+                    "name": "PLAKAT5",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/plakat4-aplite.png",
+                    "name": "PLAKAT4",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/plakat3-aplite.png",
+                    "name": "PLAKAT3",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/plakat2-aplite.png",
+                    "name": "PLAKAT2",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/Red October-Regular.ttf",
+                    "name": "FONT_OCTOBER_34",
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk"
+        ],
+        "uuid": "75ca3abd-4b09-4235-b141-8a95fad098fc",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "2.0.0"
+}
