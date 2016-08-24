@@ -14,38 +14,45 @@
         "resources": {
             "media": [
                 {
-                    "file": "images/plakat1-aplite.png",
-                    "name": "PLAKAT1",
+                    "file": "images/icon",
+                    "menuIcon": true,
+                    "name": "ICON",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/icon.png",
-                    "menuIcon": true,
-                    "name": "ICON",
-                    "type": "bitmap"
-                },
-                {
-                    "file": "images/plakat5-aplite.png",
+                    "file": "images/plakat5",
                     "name": "PLAKAT5",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/plakat4-aplite.png",
+                    "file": "images/plakat4",
                     "name": "PLAKAT4",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/plakat3-aplite.png",
+                    "file": "images/plakat3",
                     "name": "PLAKAT3",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
                 {
-                    "file": "images/plakat2-aplite.png",
+                    "file": "images/plakat2",
                     "name": "PLAKAT2",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/plakat1",
+                    "name": "PLAKAT1",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/plakat6",
+                    "name": "PLAKAT6",
                     "targetPlatforms": null,
                     "type": "bitmap"
                 },
@@ -68,5 +75,5 @@
             "watchface": true
         }
     },
-    "version": "2.2.0"
+    "version": "2.3.0"
 }

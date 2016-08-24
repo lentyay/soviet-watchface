@@ -11,29 +11,26 @@ static GColor outline_color;
 int cur_plakat;
 int coord_x;
 int coord_y;
+int get_poster(int count);
 
 static void load_resources() {
-  unsigned char RESOURCE[5] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4, RESOURCE_ID_PLAKAT5};
+  unsigned char RESOURCE[6] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4, RESOURCE_ID_PLAKAT5, RESOURCE_ID_PLAKAT6};
 
-  /* Temporary replace random with last seconds digit */
-  time_t temp = time(NULL);
-  struct tm *tick_time = localtime(&temp);
-  cur_plakat = (int)(tick_time->tm_sec % 10) / 2;
-  if (cur_plakat > 4) { cur_plakat = 4; };
-  
-//  cur_plakat = rand() % 5;
+  int posters_count = sizeof(RESOURCE);
+  cur_plakat = get_poster(posters_count);
+  //APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d %d", cur_plakat, resource_size(resource_get_handle(RESOURCE[cur_plakat])), sizeof(RESOURCE));
+
   bitmap = gbitmap_create_with_resource(RESOURCE[cur_plakat]);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d", cur_plakat, resource_size(resource_get_handle(RESOURCE[cur_plakat])));  
-
   custom_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OCTOBER_34));
 
   #ifdef PBL_BW
     time_color = GColorBlack;
     outline_color = GColorWhite;
   #elif PBL_COLOR
-    static uint8_t time_colors[5] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11111111 /* White */};
+    // here is colors palette: //developer.pebble.com/docs/c/Graphics/Graphics_Types/Color_Definitions/
+    static uint8_t time_colors[6] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11100000 /* Dark Candy Apple Red */};
     time_color = (GColor)time_colors[cur_plakat];
-    static uint8_t outline_colors[5] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11100100 /* Windsor Tan */};
+    static uint8_t outline_colors[6] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11100100 /* Windsor Tan */, (uint8_t)0b11111110 /* Pastel Yellow */};
     outline_color = (GColor)outline_colors[cur_plakat];
   #endif  
 
@@ -50,6 +47,22 @@ static void destroy_resources() {
   gbitmap_destroy(bitmap);
   fonts_unload_custom_font(custom_font);
 }
+
+int get_poster(int count) {
+  time_t temp = time(NULL);
+  struct tm *tick_time = localtime(&temp);
+  
+  // Take 'poster_id' as last seconds digit
+  int poster_id = (int)(tick_time->tm_sec % 10);
+  
+  // If 'poster_id' is higher than 'count' then pick 'poster_id' randomly
+  if (poster_id > count - 1) { 
+    poster_id = rand() % count;
+  };
+  
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d", poster_id, count);
+  return(poster_id);
+};
 
 static void draw_picture(GContext* ctx, GBitmap **sources, GRect bounces, int number) {
     GPoint origin = bounces.origin;
