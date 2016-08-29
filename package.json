@@ -14,6 +14,12 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/plakat7",
+                    "name": "PLAKAT7",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "file": "images/icon",
                     "menuIcon": true,
                     "name": "ICON",
@@ -75,5 +81,5 @@
             "watchface": true
         }
     },
-    "version": "2.3.0"
+    "version": "2.4.0"
 }

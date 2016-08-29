@@ -14,7 +14,7 @@ int coord_y;
 int get_poster(int count);
 
 static void load_resources() {
-  unsigned char RESOURCE[6] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4, RESOURCE_ID_PLAKAT5, RESOURCE_ID_PLAKAT6};
+  unsigned char RESOURCE[7] = {RESOURCE_ID_PLAKAT1, RESOURCE_ID_PLAKAT2, RESOURCE_ID_PLAKAT3, RESOURCE_ID_PLAKAT4, RESOURCE_ID_PLAKAT5, RESOURCE_ID_PLAKAT6, RESOURCE_ID_PLAKAT7};
 
   int posters_count = sizeof(RESOURCE);
   cur_plakat = get_poster(posters_count);
@@ -28,9 +28,9 @@ static void load_resources() {
     outline_color = GColorWhite;
   #elif PBL_COLOR
     // here is colors palette: //developer.pebble.com/docs/c/Graphics/Graphics_Types/Color_Definitions/
-    static uint8_t time_colors[6] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11100000 /* Dark Candy Apple Red */};
+    static uint8_t time_colors[7] = {(uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11100000 /* Dark Candy Apple Red */, (uint8_t)0b11100000 /* Dark Candy Apple Red */};
     time_color = (GColor)time_colors[cur_plakat];
-    static uint8_t outline_colors[6] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11100100 /* Windsor Tan */, (uint8_t)0b11111110 /* Pastel Yellow */};
+    static uint8_t outline_colors[7] = {(uint8_t)0b11111111 /* White */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */, (uint8_t)0b11110000 /* Red */, (uint8_t)0b11100100 /* Windsor Tan */, (uint8_t)0b11111110 /* Pastel Yellow */, (uint8_t)0b11111111 /* White */};
     outline_color = (GColor)outline_colors[cur_plakat];
   #endif  
 
@@ -61,6 +61,7 @@ int get_poster(int count) {
   };
   
   APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d", poster_id, count);
+  poster_id = 6;
   return(poster_id);
 };
 
