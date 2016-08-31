@@ -4,9 +4,6 @@
     "keywords": [],
     "name": "soviet-posters",
     "pebble": {
-        "capabilities": [
-            ""
-        ],
         "displayName": "Soviet Posters Watchface",
         "enableMultiJS": true,
         "messageKeys": [],
@@ -74,12 +71,13 @@
         "targetPlatforms": [
             "aplite",
             "basalt",
-            "chalk"
+            "chalk",
+            "diorite"
         ],
         "uuid": "75ca3abd-4b09-4235-b141-8a95fad098fc",
         "watchapp": {
             "watchface": true
         }
     },
-    "version": "2.4.0"
+    "version": "2.5.0"
 }

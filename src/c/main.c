@@ -61,7 +61,7 @@ int get_poster(int count) {
   };
   
   APP_LOG(APP_LOG_LEVEL_DEBUG, "%d %d", poster_id, count);
-  poster_id = 6;
+  //poster_id = 6;
   return(poster_id);
 };
 
